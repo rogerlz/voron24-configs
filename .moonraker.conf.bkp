@@ -1,0 +1,67 @@
+[server]
+host = 0.0.0.0
+port = 7125
+enable_debug_logging = False
+max_upload_size = 102400
+
+[authorization]
+cors_domains = 
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	https://app.fluidd.xyz
+	http://app.fluidd.xyz
+	http://*.local
+	http://*.lan
+trusted_clients = 
+	127.0.0.0/8
+	192.168.50.0/24
+	FE80::/10
+	::1/128
+
+[octoprint_compat]
+enable_ufp = True
+
+[history]
+
+[machine]
+provider = systemd_cli
+
+[update_manager]
+enable_packagekit = False
+
+[update_manager mainsail]
+type = web
+repo = mainsail-crew/mainsail
+path = /opt/mainsail
+
+[update_manager client z_calibration]
+type = git_repo
+path = /opt/klipper_z_calibration
+origin = https://github.com/protoloft/klipper_z_calibration.git
+install_script = /opt/z_calibration_install.sh
+
+[update_manager KlipperScreen]
+type = git_repo
+path = /home/pi/KlipperScreen
+origin = https://github.com/jordanruthe/KlipperScreen.git
+env = /home/pi/.KlipperScreen-env/bin/python
+requirements = scripts/KlipperScreen-requirements.txt
+install_script = scripts/KlipperScreen-install.sh
+
+[update_manager client moonraker-telegram]
+type = git_repo
+path = /opt/moonraker-telegram
+origin = https://github.com/Raabi91/moonraker-telegram.git
+env = /root/.moonraker-telegram-env/bin/python
+requirements = scripts/moonraker-telegram-requirements.txt
+install_script = scripts/install.sh
+
+[zeroconf]
+
+[file_manager]
+config_path = /opt/klipper_config
+log_path = /opt/klipper_logs
+
+[database]
+database_path = /opt/.moonraker_database
+
